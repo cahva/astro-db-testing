@@ -1,0 +1,23 @@
+---
+import { db, Category } from "astro:db";
+
+const categories = await db.select().from(Category).all();
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Astro</h1>
+		<ul>
+			{categories.map((category) => (
+				<li>{category.id} {category.name}</li>
+			))}
+		</ul>
+	</body>
+</html>
